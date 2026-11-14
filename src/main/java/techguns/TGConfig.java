@@ -31,6 +31,7 @@ public class TGConfig {
 
     public static boolean disableAutofeeder;
     public static boolean machinesNeedNoPower;
+    public static boolean disableLootingForTechgunsMobDrops;
 
     public static boolean doOreGenCopper;
     public static boolean doOreGenTin;
@@ -207,6 +208,8 @@ public class TGConfig {
 
         disableAutofeeder = config.getBoolean("disableAutofeeder", Configuration.CATEGORY_GENERAL, false, "Disable automatic feeding of Food in the Techguns tab. Disable autofeeding if you think it breaks the balance");
         machinesNeedNoPower = config.getBoolean("machinesNeedNoPower", Configuration.CATEGORY_GENERAL, false, "Machines don't need power, activate this if you don't want to install a mod with generators and still be able to use the machines");
+        disableLootingForTechgunsMobDrops = config.getBoolean("DisableLootingForTechgunsMobDrops", Configuration.CATEGORY_GENERAL, true,
+                "Ignore the Looting enchantment when generating loot for Techguns mobs. Enabled by default to prevent excessive mob drops.");
 
         keepLavaRecipesWhenFuelIsPresent = config.getBoolean("keepLavaRecipesWhenFuelIsPresent", Configuration.CATEGORY_GENERAL, false, "Keep recipes with lava instead of fuel even when fuel is present. Fuels need to be added by other mods");
 

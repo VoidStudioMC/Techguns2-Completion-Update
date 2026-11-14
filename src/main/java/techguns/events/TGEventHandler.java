@@ -52,6 +52,7 @@ import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LootingLevelEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -91,6 +92,7 @@ import techguns.damagesystem.DamageSystem;
 import techguns.damagesystem.TGDamageSource;
 import techguns.deatheffects.EntityDeathUtils;
 import techguns.deatheffects.EntityDeathUtils.DeathType;
+import techguns.entities.npcs.ITGSpawnerNPC;
 import techguns.entities.npcs.TGDummySpawn;
 import techguns.entities.spawn.TGSpawnManager;
 import techguns.gui.player.TGPlayerInventory;
@@ -119,6 +121,13 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Tags.MOD_ID)
 public class TGEventHandler {
+
+    @SubscribeEvent
+    public static void onLootingLevel(LootingLevelEvent event) {
+        if (TGConfig.disableLootingForTechgunsMobDrops && event.getEntityLiving() instanceof ITGSpawnerNPC) {
+            event.setLootingLevel(0);
+        }
+    }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority = EventPriority.HIGH)
